@@ -42,6 +42,13 @@ class Button():
             self.__color = (184, 38, 214)
         else:
             self.__color = (149, 0, 179)
+            
+            
+    def onWrongAnswer(self, wrongAnswer):
+        if wrongAnswer:
+            self.__color = (206, 51, 0)
+        else:
+            self.__color = (149, 0, 179)
     
     
     def getText(self):
@@ -128,7 +135,7 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon):
         screen.blit(write_text, (330, 55))
    
  
-def redrawGameWindow(surface, background, item, scoreValue, lifeValue):
+def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown):
     global width, height, screen
     surface.fill((255, 255, 255))
     screen.blit(background, (0, 0))
@@ -136,9 +143,10 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue):
     item.draw(surface)
     displayScore(scoreValue)
     displayLifes(lifeValue)
+    displayCountdown(countdown)
 
    
-def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon):
+def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown):
     global screen, running, playButton, quitButton
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -162,19 +170,21 @@ def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon):
                         lifeValue = 3
                         gameOver = False
                         gameWon = False
+                        countdown = 5
+                        pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                         
         mousePos = pygame.mouse.get_pos()
         if 430 <= mousePos[0] <= 530 and 130 <= mousePos[1] <= 180:
-                playButton.onHover(True)
+            playButton.onHover(True)
         else:
             playButton.onHover(False)
         if 430 <= mousePos[0] <= 530 and 230 <= mousePos[1] <= 280:
-                quitButton.onHover(True)
+            quitButton.onHover(True)
         else:
             quitButton.onHover(False)
                 
     redrawMenuWindow(screen, gameOver, scoreValue, gameWon)
-    return [menuOpen, scoreValue, lifeValue, gameOver, gameWon]
+    return [menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown]
     
 
 def displayScore(scoreValue):
@@ -186,7 +196,14 @@ def displayLifes(lifeValue):
     write_text = fontMenuText.render("Lifes: {}".format(lifeValue), True, (255, 255, 255))
     screen.blit(write_text, (650, 10))
     
-       
+
+def displayCountdown(countdown):
+    global width, height
+    write_text = fontMenuText.render(str(countdown), True, (255, 255, 255))
+    text_rect = write_text.get_rect(center=(width/2, 325))
+    screen.blit(write_text, text_rect)
+
+      
 def main():
     global width, height, playButton, screen, quitButton, running, menuButton, background, menuBackground
     running = True
@@ -207,6 +224,16 @@ def main():
     everfrostImage = pygame.image.load("resources/Everfrost.png").convert_alpha()
     frostfireImage = pygame.image.load("resources/Frostfire_Gauntlet.png").convert_alpha()
     galeforceImage = pygame.image.load("resources/Galeforce.png").convert_alpha()
+    cullImage = pygame.image.load("resources/Cull.png").convert_alpha()
+    darkImage = pygame.image.load("resources/Dark_Seal.png").convert_alpha()
+    doransBladeImage = pygame.image.load("resources/Doran's_Blade.png").convert_alpha()
+    doransRingImage = pygame.image.load("resources/Doran's_Ring.png").convert_alpha()
+    doransShieldImage = pygame.image.load("resources/Doran's_Shield.png").convert_alpha()
+    emberknifeImage = pygame.image.load("resources/Emberknife.png").convert_alpha()
+    hailbladeImage = pygame.image.load("resources/Hailblade.png").convert_alpha()
+    relicImage = pygame.image.load("resources/Relic_Shield.png").convert_alpha()
+    spectralImage = pygame.image.load("resources/Spectral_Sickle.png").convert_alpha()
+    spellthiefsImage = pygame.image.load("resources/Spellthief's_Edge.png").convert_alpha()
     
     playButton = Button(430, 130, 'Play')
     quitButton = Button(430, 230, 'Quit')
@@ -221,15 +248,28 @@ def main():
     everfrost = Question("Everfrost", everfrostImage, [2800, 3300, 2900, 3200])
     frostfire_gauntlet = Question("Frostfire Gauntlet", frostfireImage, [2800, 2500, 3000, 2600])
     galeforce = Question("Galeforce", galeforceImage, [3400, 3100, 2800, 3200])
+    cull = Question("Cull", cullImage, [450, 350, 400, 300])
+    dark_seal = Question("Dark Seal", darkImage, [350, 450, 300, 400])
+    dorans_blade = Question("Doran's Blade", doransBladeImage, [450, 400, 350, 300])
+    dorans_ring = Question("Doran's Ring", doransRingImage, [400, 450, 350, 300])
+    dorans_shield = Question("Doran's Shield", doransShieldImage, [450, 350, 400, 300])
+    emberknife = Question("Emberknife", emberknifeImage, [350, 400, 450, 300])
+    hailblade = Question("Hailblade", hailbladeImage, [350, 300, 400, 450])
+    relic = Question("Relic Shield", relicImage, [400, 450, 350, 300])
+    spectral = Question("Spectral Sickl", spectralImage, [400, 450, 350, 300])
+    spellthiefs = Question("Spellthief's Edge", spellthiefsImage, [400, 450, 350, 300])
     itemList = [liandrys_anguish, morellonomicon, crown_of_the_shattered_queen,
                 divine_sunderer, duskblade_of_draktharr, eclipse, evenshroud,
-                everfrost, frostfire_gauntlet, galeforce]
+                everfrost, frostfire_gauntlet, galeforce, cull, dark_seal, 
+                dorans_blade, dorans_ring, dorans_shield, emberknife, hailblade,
+                relic, spectral, spellthiefs]
     itemListCopy = itemList.copy()
     newItem = True
     scoreValue = 0
     lifeValue = 3
     gameOver = False
     gameWon = False
+    countdown = 5
     
     #Menu open
     menuOpen = True
@@ -238,15 +278,16 @@ def main():
     
     while running: 
         FPS_CLOCK.tick(30)
-        if menuOpen or lifeValue <= 0 or gameWon:
-            if lifeValue <= 0:
+        if menuOpen or lifeValue <= 0 or gameWon or countdown <= 0:
+            if lifeValue <= 0 or countdown <= 0:
                 gameOver = True
-            values = menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon)
+            values = menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown)
             menuOpen = values[0]
             scoreValue = values[1]
             lifeValue = values[2]
             gameOver = values[3]
             gameWon = values[4]
+            countdown = values[5]
             itemList = itemListCopy.copy()
             
         #Main game loop
@@ -258,9 +299,11 @@ def main():
             elif newItem and not itemList:
                 gameWon = True
                         
-            redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue)
+            redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue, countdown)
+            
             
             for event in pygame.event.get():
+                questionButtons = randomItem.getButtons()
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
@@ -274,29 +317,40 @@ def main():
                             if randomItem.answer1clicked():
                                 newItem = True
                                 scoreValue += 10
+                                countdown = 5
+                                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                             else:
                                 lifeValue -= 1
+                                #questionButtons[0].onWrongAnswer(True)
                         if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
                             if randomItem.answer2clicked():
                                 newItem = True
                                 scoreValue += 10
+                                countdown = 5
+                                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                             else:
                                 lifeValue -= 1
                         if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer3clicked():
                                 newItem = True
                                 scoreValue += 10
+                                countdown = 5
+                                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                             else:
                                 lifeValue -= 1
                         if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer4clicked():
                                 newItem = True
                                 scoreValue += 10
+                                countdown = 5
+                                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                             else:
-                                lifeValue -= 1                
+                                lifeValue -= 1    
+                if event.type == pygame.USEREVENT:
+                    countdown -= 1
                 
                 mousePos = pygame.mouse.get_pos()
-                questionButtons = randomItem.getButtons()
+                
                 if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
                     menuButton.onHover(True)
                 else:
