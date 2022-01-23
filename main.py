@@ -22,12 +22,13 @@ pygame.display.set_icon(window_icon)
 
 
 class Button():
-    def __init__(self, x_pos, y_pos, text, color = (149, 0, 179), borderColor = (255, 255, 255)):
+    def __init__(self, x_pos, y_pos, text, color = (149, 0, 179), borderColor = (255, 255, 255), hoverEnable = True):
         self.__x_pos = x_pos
         self.__y_pos = y_pos
         self.__color = color
         self.__borderColor = borderColor
         self.__text = text
+        self.__hoverEnable = hoverEnable
       
         
     def draw(self, surface):
@@ -38,21 +39,26 @@ class Button():
     
     
     def onHover(self, hovered):
-        if hovered:
-            self.__color = (184, 38, 214)
-        else:
-            self.__color = (149, 0, 179)
+        if self.__hoverEnable:
+            if hovered:
+                self.__color = (184, 38, 214)
+            else:
+                self.__color = (149, 0, 179)
             
             
-    def onWrongAnswer(self, wrongAnswer):
-        if wrongAnswer:
-            self.__color = (206, 51, 0)
-        else:
-            self.__color = (149, 0, 179)
+    def onWrongAnswer(self):
+        self.__color = (206, 51, 0)
+        self.__hoverEnable = False 
+
     
-    
+    def onCorrectAnswer(self):
+        self.__color = (149, 0, 179)
+        self.__hoverEnable = True
+ 
+        
     def getText(self):
         return self.__text
+
 
 class Question():
     def __init__(self, name, image, answers):
@@ -171,7 +177,7 @@ def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown):
                         gameOver = False
                         gameWon = False
                         countdown = 5
-                        pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                        #pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
                         
         mousePos = pygame.mouse.get_pos()
         if 430 <= mousePos[0] <= 530 and 130 <= mousePos[1] <= 180:
@@ -207,17 +213,11 @@ def displayCountdown(countdown):
     text_rect = write_text.get_rect(center=(width/2, 325))
     screen.blit(write_text, text_rect)
 
-      
-def main():
-    global width, height, playButton, screen, quitButton, running, menuButton, background, menuBackground
-    running = True
-    width = 960
-    height = 478
-    screen = pygame.display.set_mode((width, height))
+
+def loadItems():
     
     #Loading objects
-    background = pygame.image.load('resources/backgroundResized.png').convert_alpha()
-    menuBackground = pygame.image.load('resources/menuBackgroundResized.png').convert_alpha()
+   
     liandrysImage = pygame.image.load("resources/Liandry's_Anguish.png").convert_alpha()
     morellonomiconImage = pygame.image.load("resources/Morellonomicon.png").convert_alpha()
     crownImage = pygame.image.load("resources/Crown.png").convert_alpha()
@@ -239,14 +239,7 @@ def main():
     spectralImage = pygame.image.load("resources/Spectral_Sickle.png").convert_alpha()
     spellthiefsImage = pygame.image.load("resources/Spellthief's_Edge.png").convert_alpha()
     
-    heartImage = pygame.image.load("resources/heart.png").convert_alpha()
-    heartImage = pygame.transform.scale(heartImage, (40, 40))
-    heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
-    heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
     
-    playButton = Button(430, 130, 'Play')
-    quitButton = Button(430, 230, 'Quit')
-    menuButton = Button(0, 0, 'Menu')
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
     crown_of_the_shattered_queen = Question("Crown of the Shattered Queen", crownImage, [2800, 2750, 2500, 3000])
@@ -272,6 +265,53 @@ def main():
                 everfrost, frostfire_gauntlet, galeforce, cull, dark_seal, 
                 dorans_blade, dorans_ring, dorans_shield, emberknife, hailblade,
                 relic, spectral, spellthiefs]
+    
+    return itemList  
+
+
+def hovering(mousePos, menuButton, questionButtons):
+    if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
+        menuButton.onHover(True)
+    else:
+        menuButton.onHover(False)
+    if 330 <= mousePos[0] <= 430 and 250 <= mousePos[1] <= 300:
+        questionButtons[0].onHover(True)
+    else:
+        questionButtons[0].onHover(False)
+    if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
+        questionButtons[1].onHover(True)
+    else:
+        questionButtons[1].onHover(False)
+    if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
+        questionButtons[2].onHover(True)
+    else:
+        questionButtons[2].onHover(False)
+    if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
+        questionButtons[3].onHover(True)
+    else:
+        questionButtons[3].onHover(False)
+    
+       
+def main():
+    global width, height, playButton, screen, quitButton, running, menuButton, background, menuBackground
+    running = True
+    width = 960
+    height = 478
+    screen = pygame.display.set_mode((width, height))
+    
+    background = pygame.image.load('resources/backgroundResized.png').convert_alpha()
+    menuBackground = pygame.image.load('resources/menuBackgroundResized.png').convert_alpha()
+    
+    heartImage = pygame.image.load("resources/heart.png").convert_alpha()
+    heartImage = pygame.transform.scale(heartImage, (40, 40))
+    heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
+    heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
+    
+    playButton = Button(430, 130, 'Play')
+    quitButton = Button(430, 230, 'Quit')
+    menuButton = Button(0, 0, 'Menu')
+    
+    itemList = loadItems()
     itemListCopy = itemList.copy()
     newItem = True
     scoreValue = 0
@@ -309,15 +349,17 @@ def main():
                 gameWon = True
                         
             redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage)
-            
-            
+                       
             for event in pygame.event.get():
                 questionButtons = randomItem.getButtons()
+                
                 if event.type == pygame.QUIT:
                     running = False
+                    
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouseButtonType = pygame.mouse.get_pressed()
                     mousePos = pygame.mouse.get_pos()
+                    
                     if mouseButtonType[0]:
                         if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
                             menuOpen = True
@@ -328,59 +370,55 @@ def main():
                                 scoreValue += 10
                                 countdown = 5
                                 pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                                for i in range(4):
+                                    questionButtons[i].onCorrectAnswer()
                             else:
                                 lifeValue -= 1
-                                #questionButtons[0].onWrongAnswer(True)
+                                questionButtons[0].onWrongAnswer()
+                                
                         if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
                             if randomItem.answer2clicked():
                                 newItem = True
                                 scoreValue += 10
                                 countdown = 5
                                 pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                                for i in range(4):
+                                    questionButtons[i].onCorrectAnswer()
                             else:
                                 lifeValue -= 1
+                                questionButtons[1].onWrongAnswer()
+                                
                         if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer3clicked():
                                 newItem = True
                                 scoreValue += 10
                                 countdown = 5
                                 pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                                for i in range(4):
+                                    questionButtons[i].onCorrectAnswer()
                             else:
                                 lifeValue -= 1
+                                questionButtons[2].onWrongAnswer()
+                                
                         if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer4clicked():
                                 newItem = True
                                 scoreValue += 10
                                 countdown = 5
                                 pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                                for i in range(4):
+                                    questionButtons[i].onCorrectAnswer()
                             else:
-                                lifeValue -= 1    
+                                lifeValue -= 1 
+                                questionButtons[3].onWrongAnswer()
+                                
                 if event.type == pygame.USEREVENT:
                     countdown -= 1
                 
                 mousePos = pygame.mouse.get_pos()
                 
-                if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
-                    menuButton.onHover(True)
-                else:
-                    menuButton.onHover(False)
-                if 330 <= mousePos[0] <= 430 and 250 <= mousePos[1] <= 300:
-                    questionButtons[0].onHover(True)
-                else:
-                    questionButtons[0].onHover(False)
-                if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
-                    questionButtons[1].onHover(True)
-                else:
-                    questionButtons[1].onHover(False)
-                if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
-                    questionButtons[2].onHover(True)
-                else:
-                    questionButtons[2].onHover(False)
-                if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
-                    questionButtons[3].onHover(True)
-                else:
-                    questionButtons[3].onHover(False)
-                    
+                hovering(mousePos, menuButton, questionButtons)
+ 
         pygame.display.update()
         
         
