@@ -135,14 +135,14 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon):
         screen.blit(write_text, (330, 55))
    
  
-def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown):
+def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage):
     global width, height, screen
     surface.fill((255, 255, 255))
     screen.blit(background, (0, 0))
     menuButton.draw(surface)
     item.draw(surface)
     displayScore(scoreValue)
-    displayLifes(lifeValue)
+    displayLifes(lifeValue, heartImage, heartDepletedImage)
     displayCountdown(countdown)
 
    
@@ -192,11 +192,15 @@ def displayScore(scoreValue):
     screen.blit(write_text, (770, 10))
 
 
-def displayLifes(lifeValue):
-    write_text = fontMenuText.render("Lifes: {}".format(lifeValue), True, (255, 255, 255))
-    screen.blit(write_text, (650, 10))
+def displayLifes(lifeValue, heartImage, heartDepletedImage):
+    #write_text = fontMenuText.render("Lifes: {}".format(lifeValue), True, (255, 255, 255))
+    #screen.blit(write_text, (650, 10))
+    for i in range(lifeValue):       
+        screen.blit(heartImage, (610 + i*50, 13))
+    for i in range(3 - lifeValue):        
+        screen.blit(heartDepletedImage, (710 - i*50, 13))
     
-
+    
 def displayCountdown(countdown):
     global width, height
     write_text = fontMenuText.render(str(countdown), True, (255, 255, 255))
@@ -234,6 +238,11 @@ def main():
     relicImage = pygame.image.load("resources/Relic_Shield.png").convert_alpha()
     spectralImage = pygame.image.load("resources/Spectral_Sickle.png").convert_alpha()
     spellthiefsImage = pygame.image.load("resources/Spellthief's_Edge.png").convert_alpha()
+    
+    heartImage = pygame.image.load("resources/heart.png").convert_alpha()
+    heartImage = pygame.transform.scale(heartImage, (40, 40))
+    heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
+    heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
     
     playButton = Button(430, 130, 'Play')
     quitButton = Button(430, 230, 'Quit')
@@ -278,8 +287,8 @@ def main():
     
     while running: 
         FPS_CLOCK.tick(30)
-        if menuOpen or lifeValue <= 0 or gameWon or countdown <= 0:
-            if lifeValue <= 0 or countdown <= 0:
+        if menuOpen or lifeValue < 0 or gameWon or countdown <= 0:
+            if lifeValue < 0 or countdown <= 0:
                 gameOver = True
             values = menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown)
             menuOpen = values[0]
@@ -292,14 +301,14 @@ def main():
             
         #Main game loop
         else:
-            if newItem and itemList:         
+            if newItem and itemList:
                 randomItem = random.choice((itemList))
                 itemList.remove(randomItem)
                 newItem = False
             elif newItem and not itemList:
                 gameWon = True
                         
-            redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue, countdown)
+            redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage)
             
             
             for event in pygame.event.get():
