@@ -36,7 +36,8 @@ class Button():
         pygame.draw.rect(surface, self.__color, (self.__x_pos, self.__y_pos, 100, 50))
         write_text = fontMenuText.render(self.__text, True, (255, 255, 255))
         screen.blit(write_text, (self.__x_pos + 10, self.__y_pos))
-    
+        if not self.__hoverEnable:
+            pygame.draw.line(surface, (255, 255, 255), (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
     
     def onHover(self, hovered):
         if self.__hoverEnable:
@@ -152,7 +153,7 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown
     displayCountdown(countdown)
 
    
-def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown):
+def menu(scoreValue, gameOver, gameWon):
     global screen, running, playButton, quitButton
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -171,13 +172,7 @@ def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown):
                         running = False
                     #"Play"-Button
                     if 130 <= mousePos[1] <= 180:
-                        menuOpen = False
-                        scoreValue = 0
-                        lifeValue = 3
-                        gameOver = False
-                        gameWon = False
-                        countdown = 5
-                        #pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5)
+                        return False
                         
         mousePos = pygame.mouse.get_pos()
         if 430 <= mousePos[0] <= 530 and 130 <= mousePos[1] <= 180:
@@ -190,7 +185,7 @@ def menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown):
             quitButton.onHover(False)
                 
     redrawMenuWindow(screen, gameOver, scoreValue, gameWon)
-    return [menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown]
+    return True
     
 
 def displayScore(scoreValue):
@@ -260,12 +255,16 @@ def loadItems():
     relic = Question("Relic Shield", relicImage, [400, 450, 350, 300])
     spectral = Question("Spectral Sickl", spectralImage, [400, 450, 350, 300])
     spellthiefs = Question("Spellthief's Edge", spellthiefsImage, [400, 450, 350, 300])
+   
+    #Shorter list for playtesting
+    #itemList = [liandrys_anguish, morellonomicon]
+      
+    #Full list
     itemList = [liandrys_anguish, morellonomicon, crown_of_the_shattered_queen,
                 divine_sunderer, duskblade_of_draktharr, eclipse, evenshroud,
                 everfrost, frostfire_gauntlet, galeforce, cull, dark_seal, 
                 dorans_blade, dorans_ring, dorans_shield, emberknife, hailblade,
                 relic, spectral, spellthiefs]
-    
     return itemList  
 
 
@@ -312,7 +311,6 @@ def main():
     menuButton = Button(0, 0, 'Menu')
     
     itemList = loadItems()
-    itemListCopy = itemList.copy()
     newItem = True
     scoreValue = 0
     lifeValue = 3
@@ -327,17 +325,20 @@ def main():
     
     while running: 
         FPS_CLOCK.tick(30)
+        
         if menuOpen or lifeValue < 0 or gameWon or countdown <= 0:
             if lifeValue < 0 or countdown <= 0:
                 gameOver = True
-            values = menu(menuOpen, scoreValue, lifeValue, gameOver, gameWon, countdown)
-            menuOpen = values[0]
-            scoreValue = values[1]
-            lifeValue = values[2]
-            gameOver = values[3]
-            gameWon = values[4]
-            countdown = values[5]
-            itemList = itemListCopy.copy()
+            menuOpen = menu(scoreValue, gameOver, gameWon)
+            if not menuOpen:
+                scoreValue = 0
+                lifeValue = 3
+                gameOver = False
+                gameWon = False
+                countdown = 5
+                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
+                itemList = loadItems()
+                newItem = True
             
         #Main game loop
         else:
