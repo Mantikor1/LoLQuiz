@@ -233,7 +233,11 @@ def loadItems():
     relicImage = pygame.image.load("resources/Relic_Shield.png").convert_alpha()
     spectralImage = pygame.image.load("resources/Spectral_Sickle.png").convert_alpha()
     spellthiefsImage = pygame.image.load("resources/Spellthief's_Edge.png").convert_alpha()
-    
+    steel_shoulderguardsImage = pygame.image.load("resources/Steel_Shoulderguards.png").convert_alpha()
+    tearImage = pygame.image.load("resources/Tear_of_the_Goddess.png").convert_alpha()
+    control_wardImage = pygame.image.load("resources/Control_Ward.png").convert_alpha()
+    corruptingImage = pygame.image.load("resources/Corrupting_Potion.png").convert_alpha()
+
     
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
@@ -255,6 +259,11 @@ def loadItems():
     relic = Question("Relic Shield", relicImage, [400, 450, 350, 300])
     spectral = Question("Spectral Sickl", spectralImage, [400, 450, 350, 300])
     spellthiefs = Question("Spellthief's Edge", spellthiefsImage, [400, 450, 350, 300])
+    steel_shoulderguards = Question("Steel Shoulderguards", steel_shoulderguardsImage, [400, 450, 350, 300])
+    tear_of_the_goddess = Question("Tear of the Goddess", tearImage, [400, 450, 350, 300])
+    control_ward = Question("Control Ward", control_wardImage, [75, 50, 25, 100])
+    corrupting_potion = Question("Corrupting Potion", corruptingImage, [500, 250, 450, 400])
+
    
     #Shorter list for playtesting
     #itemList = [liandrys_anguish, morellonomicon]
@@ -264,7 +273,9 @@ def loadItems():
                 divine_sunderer, duskblade_of_draktharr, eclipse, evenshroud,
                 everfrost, frostfire_gauntlet, galeforce, cull, dark_seal, 
                 dorans_blade, dorans_ring, dorans_shield, emberknife, hailblade,
-                relic, spectral, spellthiefs]
+                relic, spectral, spellthiefs, steel_shoulderguards, 
+                tear_of_the_goddess, control_ward, corrupting_potion]
+    
     return itemList  
 
 
