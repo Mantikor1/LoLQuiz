@@ -22,10 +22,10 @@ pygame.display.set_icon(window_icon)
 
 
 class Button():
-    def __init__(self, x_pos, y_pos, text, color = (149, 0, 179), borderColor = (255, 255, 255), hoverEnable = True):
+    def __init__(self, x_pos, y_pos, text, color=None, borderColor = (255, 255, 255), hoverEnable = True):
         self.__x_pos = x_pos
         self.__y_pos = y_pos
-        self.__color = color
+        self.__color = color or (149, 0, 179)
         self.__borderColor = borderColor
         self.__text = text
         self.__hoverEnable = hoverEnable
@@ -34,10 +34,14 @@ class Button():
     def draw(self, surface):
         pygame.draw.rect(surface, self.__borderColor, (self.__x_pos -2, self.__y_pos -2, 104, 54))
         pygame.draw.rect(surface, self.__color, (self.__x_pos, self.__y_pos, 100, 50))
+        
         write_text = fontMenuText.render(self.__text, True, (255, 255, 255))
-        screen.blit(write_text, (self.__x_pos + 10, self.__y_pos))
+        text_rect = write_text.get_rect(center=(self.__x_pos + 49, self.__y_pos + 22))
+        screen.blit(write_text, text_rect)
+        
         if not self.__hoverEnable:
-            pygame.draw.line(surface, (255, 255, 255), (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
+            pygame.draw.line(surface, (255, 255, 255), 
+                             (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
     
     def onHover(self, hovered):
         if self.__hoverEnable:
@@ -109,25 +113,32 @@ class Question():
         else:
             return False
     
-    
     def answer3clicked(self):
         if self.__answer3.getText() == str(self.__cost):
             return True
         else:
             return False
-    
-    
+
     def answer4clicked(self):
         if self.__answer4.getText() == str(self.__cost):
             return True
         else:
             return False
-  
-      
+
+
 def redrawMenuWindow(surface, gameOver, scoreValue, gameWon):
     global width, height, screen
     surface.fill((0, 0, 0))
     screen.blit(menuBackground, (0, 0))
+    
+    rect1 = pygame.Rect(0, 0, 236, 406)
+    rect1.center = (width/2, height/2)
+    pygame.draw.rect(screen, (136, 115, 50), rect1)
+    
+    rect2 = pygame.Rect(0, 0, 230, 400)
+    rect2.center = (width/2, height/2)
+    pygame.draw.rect(screen, (13, 23, 24), rect2)
+    
     playButton.draw(surface)
     quitButton.draw(surface)
     if gameOver:
@@ -317,8 +328,8 @@ def main():
     heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
     heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
     
-    playButton = Button(430, 130, 'Play')
-    quitButton = Button(430, 230, 'Quit')
+    playButton = Button(430, 130, 'Play', (33, 60, 57))
+    quitButton = Button(430, 230, 'Quit', (33, 60, 57))
     menuButton = Button(0, 0, 'Menu')
     
     itemList = loadItems()
@@ -347,7 +358,7 @@ def main():
                 gameOver = False
                 gameWon = False
                 countdown = 5
-                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
+                #pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
                 itemList = loadItems()
                 newItem = True
             
@@ -360,7 +371,8 @@ def main():
             elif newItem and not itemList:
                 gameWon = True
                         
-            redrawGameWindow(screen, background, randomItem, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage)
+            redrawGameWindow(screen, background, randomItem, scoreValue, 
+                             lifeValue, countdown, heartImage, heartDepletedImage)
                        
             for event in pygame.event.get():
                 questionButtons = randomItem.getButtons()
