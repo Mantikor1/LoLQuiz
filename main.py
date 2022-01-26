@@ -22,20 +22,23 @@ pygame.display.set_icon(window_icon)
 
 
 class Button():
-    def __init__(self, x_pos, y_pos, text, color=None, borderColor = (255, 255, 255), hoverEnable = True):
+    def __init__(self, x_pos, y_pos, text, color = None, borderColor = None, hoverColor = None, textColor = None):
         self.__x_pos = x_pos
         self.__y_pos = y_pos
-        self.__color = color or (149, 0, 179)
-        self.__borderColor = borderColor
+        self.__colorOriginal = color or (149, 0, 179)
+        self.__color = self.__colorOriginal
+        self.__borderColor = borderColor or (255, 255, 255)
         self.__text = text
-        self.__hoverEnable = hoverEnable
+        self.__hoverEnable = True
+        self.__hoverColor = hoverColor or (184, 38, 214)
+        self.__textColor = textColor or (255, 255, 255)
       
         
     def draw(self, surface):
         pygame.draw.rect(surface, self.__borderColor, (self.__x_pos -2, self.__y_pos -2, 104, 54))
         pygame.draw.rect(surface, self.__color, (self.__x_pos, self.__y_pos, 100, 50))
         
-        write_text = fontMenuText.render(self.__text, True, (255, 255, 255))
+        write_text = fontMenuText.render(self.__text, True, self.__textColor)
         text_rect = write_text.get_rect(center=(self.__x_pos + 49, self.__y_pos + 22))
         screen.blit(write_text, text_rect)
         
@@ -46,9 +49,9 @@ class Button():
     def onHover(self, hovered):
         if self.__hoverEnable:
             if hovered:
-                self.__color = (184, 38, 214)
+                self.__color = self.__hoverColor
             else:
-                self.__color = (149, 0, 179)
+                self.__color = self.__colorOriginal
             
             
     def onWrongAnswer(self):
@@ -126,26 +129,33 @@ class Question():
             return False
 
 
-def redrawMenuWindow(surface, gameOver, scoreValue, gameWon):
+def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
     global width, height, screen
     surface.fill((0, 0, 0))
     screen.blit(menuBackground, (0, 0))
     
+    #border rectangle background main menu
     rect1 = pygame.Rect(0, 0, 236, 406)
     rect1.center = (width/2, height/2)
     pygame.draw.rect(screen, (136, 115, 50), rect1)
     
+    #rectangle background main menu
     rect2 = pygame.Rect(0, 0, 230, 400)
     rect2.center = (width/2, height/2)
     pygame.draw.rect(screen, (13, 23, 24), rect2)
     
     playButton.draw(surface)
     quitButton.draw(surface)
+    
+    screen.blit(moneyBagImage, (500, 150))
+    
     if gameOver:
-        write_text = fontMenuText.render("Game over!", True, (255, 255, 255))
-        screen.blit(write_text, (395, 15))
-        write_text = fontMenuText.render("Your highscore was: {}".format(scoreValue), True, (255, 255, 255))
-        screen.blit(write_text, (330, 55))
+        write_text = fontMenuText.render("Game over!", True, (255, 255, 255))        
+        text_rect = write_text.get_rect(center=(width/2, 60))
+        screen.blit(write_text, text_rect)
+        write_text = fontMenuText.render("Highscore: {}".format(scoreValue), True, (255, 255, 255))        
+        text_rect = write_text.get_rect(center=(width/2, 100))
+        screen.blit(write_text, text_rect)
     elif gameWon:
         write_text = fontMenuText.render("You won!", True, (255, 255, 255))
         screen.blit(write_text, (415, 15))
@@ -164,7 +174,7 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown
     displayCountdown(countdown)
 
    
-def menu(scoreValue, gameOver, gameWon):
+def menu(scoreValue, gameOver, gameWon, moneyBagImage):
     global screen, running, playButton, quitButton
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -195,7 +205,7 @@ def menu(scoreValue, gameOver, gameWon):
         else:
             quitButton.onHover(False)
                 
-    redrawMenuWindow(screen, gameOver, scoreValue, gameWon)
+    redrawMenuWindow(screen, gameOver, scoreValue, gameWon, moneyBagImage)
     return True
     
 
@@ -205,8 +215,6 @@ def displayScore(scoreValue):
 
 
 def displayLifes(lifeValue, heartImage, heartDepletedImage):
-    #write_text = fontMenuText.render("Lifes: {}".format(lifeValue), True, (255, 255, 255))
-    #screen.blit(write_text, (650, 10))
     for i in range(lifeValue):       
         screen.blit(heartImage, (610 + i*50, 13))
     for i in range(3 - lifeValue):        
@@ -328,10 +336,15 @@ def main():
     heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
     heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
     
-    playButton = Button(430, 130, 'Play', (33, 60, 57))
-    quitButton = Button(430, 230, 'Quit', (33, 60, 57))
+    moneyBagImage = pygame.image.load("resources/money-bag.png").convert_alpha()
+    moneyBagImage = pygame.transform.scale(moneyBagImage, (26, 26))
+    
+    #menu buttons
+    playButton = Button(430, 140, 'Play   ', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87))
+    quitButton = Button(430, 230, 'Quit', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87))
     menuButton = Button(0, 0, 'Menu')
     
+    #loading items and setting default values
     itemList = loadItems()
     newItem = True
     scoreValue = 0
@@ -351,7 +364,7 @@ def main():
         if menuOpen or lifeValue < 0 or gameWon or countdown <= 0:
             if lifeValue < 0 or countdown <= 0:
                 gameOver = True
-            menuOpen = menu(scoreValue, gameOver, gameWon)
+            menuOpen = menu(scoreValue, gameOver, gameWon, moneyBagImage)
             if not menuOpen:
                 scoreValue = 0
                 lifeValue = 3
