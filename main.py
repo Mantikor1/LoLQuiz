@@ -14,7 +14,9 @@ pygame.init()
 #Resources
 fontMenuText = pygame.font.SysFont('arial', 32)
 
-pygame.display.set_caption('League of Legends Quizz')
+fontQuestionText = pygame.font.SysFont('arial', 24)
+
+pygame.display.set_caption('League of Legends Quiz')
 
 window_icon = pygame.image.load('resources/Aurelion_Sol_Thumbnail.png')
 
@@ -22,9 +24,12 @@ pygame.display.set_icon(window_icon)
 
 
 class Button():
-    def __init__(self, x_pos, y_pos, text, color = None, borderColor = None, hoverColor = None, textColor = None):
+    def __init__(self, x_pos, y_pos, text, color = None, borderColor = None, 
+                 hoverColor = None, textColor = None, height = None, width = None):
         self.__x_pos = x_pos
         self.__y_pos = y_pos
+        self.__height = height or 50
+        self.__width = width or 100
         self.__colorOriginal = color or (149, 0, 179)
         self.__color = self.__colorOriginal
         self.__borderColor = borderColor or (255, 255, 255)
@@ -35,16 +40,19 @@ class Button():
       
         
     def draw(self, surface):
-        pygame.draw.rect(surface, self.__borderColor, (self.__x_pos -2, self.__y_pos -2, 104, 54))
-        pygame.draw.rect(surface, self.__color, (self.__x_pos, self.__y_pos, 100, 50))
         
+        #draw button with border
+        pygame.draw.rect(surface, self.__borderColor, (self.__x_pos -2, self.__y_pos -2, self.__width + 4, self.__height + 4))
+        pygame.draw.rect(surface, self.__color, (self.__x_pos, self.__y_pos, self.__width, self.__height))
+        
+        #write text on button (centered)
         write_text = fontMenuText.render(self.__text, True, self.__textColor)
-        text_rect = write_text.get_rect(center=(self.__x_pos + 49, self.__y_pos + 22))
+        text_rect = write_text.get_rect(center=(self.__x_pos + self.__width/2, self.__y_pos + 22))
         screen.blit(write_text, text_rect)
         
         if not self.__hoverEnable:
             pygame.draw.line(surface, (255, 255, 255), 
-                             (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
+                (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
     
     def onHover(self, hovered):
         if self.__hoverEnable:
@@ -76,8 +84,7 @@ class Question():
         self.__cost = answers[0]
         self.__wrongAnswers = answers[1:]
         self.__answers = random.sample(answers, len(answers))
-        
-        
+               
         self.__answer1 = Button(330, 250, str(self.__answers[0]))
         self.__answer2 = Button(530, 250, str(self.__answers[1]))
         self.__answer3 = Button(330, 350, str(self.__answers[2]))
@@ -90,13 +97,23 @@ class Question():
         
     def draw(self, surface):
         global width, height
+        
+        #draw the name of the item
         write_text = fontMenuText.render(self.__name, True, (255, 255, 255))
         text_rect = write_text.get_rect(center=(width/2, 70))
         screen.blit(write_text, text_rect)
-        write_text = fontMenuText.render("How much gold does this item cost in total?", True, (255, 255, 255))
+        
+        #draw the question text
+        write_text = fontQuestionText.render("How much gold does this", True, (255, 255, 255))
         text_rect = write_text.get_rect(center=(width/2, 190))
         screen.blit(write_text, text_rect)
+        
+        write_text = fontQuestionText.render("item cost in total?", True, (255, 255, 255))
+        text_rect = write_text.get_rect(center=(width/2, 220))
+        screen.blit(write_text, text_rect)
+        
         screen.blit(self.__image, (448, 100))
+        
         self.__answer1.draw(surface)
         self.__answer2.draw(surface)
         self.__answer3.draw(surface)
@@ -135,20 +152,22 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
     screen.blit(menuBackground, (0, 0))
     
     #border rectangle background main menu
-    rect1 = pygame.Rect(0, 0, 236, 406)
+    rect1 = pygame.Rect(0, 0, 326, 406)
     rect1.center = (width/2, height/2)
     pygame.draw.rect(screen, (136, 115, 50), rect1)
     
     #rectangle background main menu
-    rect2 = pygame.Rect(0, 0, 230, 400)
+    rect2 = pygame.Rect(0, 0, 320, 400)
     rect2.center = (width/2, height/2)
     pygame.draw.rect(screen, (13, 23, 24), rect2)
     
     playButton.draw(surface)
+    playButton2.draw(surface)
     quitButton.draw(surface)
     
-    screen.blit(moneyBagImage, (500, 150))
+    screen.blit(moneyBagImage, (595, 153))
     
+    #drawing message when game is over or won
     if gameOver:
         write_text = fontMenuText.render("Game over!", True, (255, 255, 255))        
         text_rect = write_text.get_rect(center=(width/2, 60))
@@ -165,9 +184,22 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
  
 def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage):
     global width, height, screen
+    
     surface.fill((255, 255, 255))
     screen.blit(background, (0, 0))
     menuButton.draw(surface)
+    
+    #border rectangle background question
+    rect1 = pygame.Rect(0, 0, 406, 406)
+    rect1.center = (width/2, height/2)
+    pygame.draw.rect(screen, (136, 115, 50), rect1)
+    
+    #rectangle background question
+    rect2 = pygame.Rect(0, 0, 400, 400)
+    rect2.center = (width/2, height/2)
+    pygame.draw.rect(screen, (13, 23, 24), rect2)
+    
+    #draw the item, lifes, score and countdown
     item.draw(surface)
     displayScore(scoreValue)
     displayLifes(lifeValue, heartImage, heartDepletedImage)
@@ -185,27 +217,36 @@ def menu(scoreValue, gameOver, gameWon, moneyBagImage):
             if mouseButtonType[0]:
                 
                 #Mouse x-position
-                if 430 <= mousePos[0] <= 530:
+                if 330 <= mousePos[0] <= 630:
                     
                     #Mouse y-position
-                    #"Quit"-Button
-                    if 230 <= mousePos[1] <= 280:
-                        running = False
-                    #"Play"-Button
-                    if 130 <= mousePos[1] <= 180:
+                   
+                    #on click "Play"-Button
+                    if 140 <= mousePos[1] <= 190:
                         return False
-                        
+                    
+                    #on click "Quit"-Button
+                    if 280 <= mousePos[1] <= 330:
+                        running = False
+         
+                    
+        #hovering menu buttons
         mousePos = pygame.mouse.get_pos()
-        if 430 <= mousePos[0] <= 530 and 130 <= mousePos[1] <= 180:
+        if 330 <= mousePos[0] <= 630 and 140 <= mousePos[1] <= 190:
             playButton.onHover(True)
         else:
             playButton.onHover(False)
-        if 430 <= mousePos[0] <= 530 and 230 <= mousePos[1] <= 280:
+        if 330 <= mousePos[0] <= 630 and 210 <= mousePos[1] <= 260:
+            playButton2.onHover(True)
+        else:
+            playButton2.onHover(False)
+        if 330 <= mousePos[0] <= 630 and 280 <= mousePos[1] <= 330:
             quitButton.onHover(True)
         else:
             quitButton.onHover(False)
                 
     redrawMenuWindow(screen, gameOver, scoreValue, gameWon, moneyBagImage)
+    
     return True
     
 
@@ -230,8 +271,7 @@ def displayCountdown(countdown):
 
 def loadItems():
     
-    #Loading objects
-   
+    #Loading objects  
     liandrysImage = pygame.image.load("resources/Liandry's_Anguish.png").convert_alpha()
     morellonomiconImage = pygame.image.load("resources/Morellonomicon.png").convert_alpha()
     crownImage = pygame.image.load("resources/Crown.png").convert_alpha()
@@ -256,7 +296,6 @@ def loadItems():
     tearImage = pygame.image.load("resources/Tear_of_the_Goddess.png").convert_alpha()
     control_wardImage = pygame.image.load("resources/Control_Ward.png").convert_alpha()
     corruptingImage = pygame.image.load("resources/Corrupting_Potion.png").convert_alpha()
-
     
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
@@ -299,6 +338,8 @@ def loadItems():
 
 
 def hovering(mousePos, menuButton, questionButtons):
+    
+    #checking if menu button or one of the question buttons is being hovered
     if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
         menuButton.onHover(True)
     else:
@@ -322,26 +363,41 @@ def hovering(mousePos, menuButton, questionButtons):
     
        
 def main():
-    global width, height, playButton, screen, quitButton, running, menuButton, background, menuBackground
+    global width, height, playButton, playButton2, screen, quitButton, running, menuButton, background, menuBackground
     running = True
+    
+    #setting screen-size
     width = 960
     height = 478
     screen = pygame.display.set_mode((width, height))
     
+    #load background images
     background = pygame.image.load('resources/backgroundResized.png').convert_alpha()
     menuBackground = pygame.image.load('resources/menuBackgroundResized.png').convert_alpha()
     
+    #load heart images
     heartImage = pygame.image.load("resources/heart.png").convert_alpha()
     heartImage = pygame.transform.scale(heartImage, (40, 40))
     heartDepletedImage = pygame.image.load("resources/heartDepleted.png").convert_alpha()
     heartDepletedImage = pygame.transform.scale(heartDepletedImage, (40, 40))
     
+    #load and resize money image
     moneyBagImage = pygame.image.load("resources/money-bag.png").convert_alpha()
     moneyBagImage = pygame.transform.scale(moneyBagImage, (26, 26))
     
     #menu buttons
-    playButton = Button(430, 140, 'Play   ', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87))
-    quitButton = Button(430, 230, 'Quit', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87))
+    buttonX = 330
+    buttonWidth = 300 
+    
+    #play gold quiz button  
+    playButton = Button(buttonX, 140, 'Play Gold Quiz', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87), 50, buttonWidth)
+    
+    #play build quiz button
+    playButton2 = Button(buttonX, 210, 'Play Build Quiz', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87), 50, buttonWidth)
+   
+    #quitButton
+    quitButton = Button(buttonX, 280, 'Quit', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87), 50, buttonWidth)
+    
     menuButton = Button(0, 0, 'Menu')
     
     #loading items and setting default values
