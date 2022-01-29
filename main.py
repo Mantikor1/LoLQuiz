@@ -100,19 +100,19 @@ class Question():
         
         #draw the name of the item
         write_text = fontMenuText.render(self.__name, True, (255, 255, 255))
-        text_rect = write_text.get_rect(center=(width/2, 70))
+        text_rect = write_text.get_rect(center=(width/2, 95))
         screen.blit(write_text, text_rect)
         
         #draw the question text
         write_text = fontQuestionText.render("How much gold does this", True, (255, 255, 255))
-        text_rect = write_text.get_rect(center=(width/2, 190))
+        text_rect = write_text.get_rect(center=(width/2, 215))
         screen.blit(write_text, text_rect)
         
         write_text = fontQuestionText.render("item cost in total?", True, (255, 255, 255))
-        text_rect = write_text.get_rect(center=(width/2, 220))
+        text_rect = write_text.get_rect(center=(width/2, 245))
         screen.blit(write_text, text_rect)
         
-        screen.blit(self.__image, (448, 100))
+        screen.blit(self.__image, (448, 129))
         
         self.__answer1.draw(surface)
         self.__answer2.draw(surface)
@@ -182,7 +182,8 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
         screen.blit(write_text, (330, 55))
    
  
-def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown, heartImage, heartDepletedImage):
+def redrawGameWindow(surface, background, item, scoreValue, lifeValue, 
+                     countdown, heartImage, heartDepletedImage, hourglassImage):
     global width, height, screen
     
     surface.fill((255, 255, 255))
@@ -190,20 +191,27 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue, countdown
     menuButton.draw(surface)
     
     #border rectangle background question
-    rect1 = pygame.Rect(0, 0, 406, 406)
-    rect1.center = (width/2, height/2)
-    pygame.draw.rect(screen, (136, 115, 50), rect1)
+    rect = pygame.Rect(0, 0, 406, 406)
+    rect.center = (width/2, 270)
+    pygame.draw.rect(screen, (136, 115, 50), rect)
     
     #rectangle background question
-    rect2 = pygame.Rect(0, 0, 400, 400)
-    rect2.center = (width/2, height/2)
-    pygame.draw.rect(screen, (13, 23, 24), rect2)
+    rect = pygame.Rect(0, 0, 400, 400)
+    rect.center = (width/2, 270)
+    pygame.draw.rect(screen, (13, 23, 24), rect)
+    
+    #rectangle border score background
+    pygame.draw.rect(screen, (136, 115, 50), (587, 0, width - 587, 58))
+    
+    #rectangle score background
+    pygame.draw.rect(screen, (13, 23, 24), (590, 0, width - 590, 55))
     
     #draw the item, lifes, score and countdown
     item.draw(surface)
     displayScore(scoreValue)
     displayLifes(lifeValue, heartImage, heartDepletedImage)
     displayCountdown(countdown)
+    screen.blit(hourglassImage, (895, 12))
 
    
 def menu(scoreValue, gameOver, gameWon, moneyBagImage):
@@ -252,21 +260,20 @@ def menu(scoreValue, gameOver, gameWon, moneyBagImage):
 
 def displayScore(scoreValue):
     write_text = fontMenuText.render("Score: {}".format(scoreValue), True, (255, 255, 255))
-    screen.blit(write_text, (770, 10))
+    screen.blit(write_text, (770, 2))
 
 
 def displayLifes(lifeValue, heartImage, heartDepletedImage):
     for i in range(lifeValue):       
-        screen.blit(heartImage, (610 + i*50, 13))
+        screen.blit(heartImage, (610 + i*50, 8))
     for i in range(3 - lifeValue):        
-        screen.blit(heartDepletedImage, (710 - i*50, 13))
+        screen.blit(heartDepletedImage, (710 - i*50, 8))
     
     
 def displayCountdown(countdown):
     global width, height
     write_text = fontMenuText.render(str(countdown), True, (255, 255, 255))
-    text_rect = write_text.get_rect(center=(width/2, 325))
-    screen.blit(write_text, text_rect)
+    screen.blit(write_text, (925, 2))
 
 
 def loadItems():
@@ -385,6 +392,10 @@ def main():
     moneyBagImage = pygame.image.load("resources/money-bag.png").convert_alpha()
     moneyBagImage = pygame.transform.scale(moneyBagImage, (26, 26))
     
+    #load and resize clock image
+    hourglassImage = pygame.image.load("resources/hourglass.png").convert_alpha()
+    hourglassImage = pygame.transform.scale(hourglassImage, (26, 26))
+    
     #menu buttons
     buttonX = 330
     buttonWidth = 300 
@@ -441,7 +452,8 @@ def main():
                 gameWon = True
                         
             redrawGameWindow(screen, background, randomItem, scoreValue, 
-                             lifeValue, countdown, heartImage, heartDepletedImage)
+                             lifeValue, countdown, heartImage, 
+                             heartDepletedImage, hourglassImage)
                        
             for event in pygame.event.get():
                 questionButtons = randomItem.getButtons()
