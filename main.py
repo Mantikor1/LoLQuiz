@@ -51,7 +51,7 @@ class Button():
         screen.blit(write_text, text_rect)
         
         if not self.__hoverEnable:
-            pygame.draw.line(surface, (255, 255, 255), 
+            pygame.draw.line(surface, (205, 190, 145), 
                 (self.__x_pos, self.__y_pos + 50), (self.__x_pos + 100, self.__y_pos), width = 3)
     
     def onHover(self, hovered):
@@ -84,11 +84,11 @@ class Question():
         self.__cost = answers[0]
         self.__wrongAnswers = answers[1:]
         self.__answers = random.sample(answers, len(answers))
-               
-        self.__answer1 = Button(330, 250, str(self.__answers[0]))
-        self.__answer2 = Button(530, 250, str(self.__answers[1]))
-        self.__answer3 = Button(330, 350, str(self.__answers[2]))
-        self.__answer4 = Button(530, 350, str(self.__answers[3]))
+          
+        self.__answer1 = Button(370, 280, str(self.__answers[0]), (33, 60, 57), (136, 115, 50), (71, 170, 159), (205, 190, 145))
+        self.__answer2 = Button(490, 280, str(self.__answers[1]), (33, 60, 57), (136, 115, 50), (71, 170, 159), (205, 190, 145))
+        self.__answer3 = Button(370, 350, str(self.__answers[2]), (33, 60, 57), (136, 115, 50), (71, 170, 159), (205, 190, 145))
+        self.__answer4 = Button(490, 350, str(self.__answers[3]), (33, 60, 57), (136, 115, 50), (71, 170, 159), (205, 190, 145))
 
 
     def getButtons(self):
@@ -99,19 +99,20 @@ class Question():
         global width, height
         
         #draw the name of the item
-        write_text = fontMenuText.render(self.__name, True, (255, 255, 255))
+        write_text = fontMenuText.render(self.__name, True, (193, 186, 170))
         text_rect = write_text.get_rect(center=(width/2, 95))
         screen.blit(write_text, text_rect)
         
         #draw the question text
-        write_text = fontQuestionText.render("How much gold does this", True, (255, 255, 255))
+        write_text = fontQuestionText.render("How much gold does this", True, (193, 186, 170))
         text_rect = write_text.get_rect(center=(width/2, 215))
         screen.blit(write_text, text_rect)
         
-        write_text = fontQuestionText.render("item cost in total?", True, (255, 255, 255))
+        write_text = fontQuestionText.render("item cost in total?", True, (193, 186, 170))
         text_rect = write_text.get_rect(center=(width/2, 245))
         screen.blit(write_text, text_rect)
         
+        pygame.draw.rect(surface, (85, 85, 87), (445, 126, 70, 70))
         screen.blit(self.__image, (448, 129))
         
         self.__answer1.draw(surface)
@@ -169,17 +170,19 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
     
     #drawing message when game is over or won
     if gameOver:
-        write_text = fontMenuText.render("Game over!", True, (255, 255, 255))        
+        write_text = fontMenuText.render("Game over!", True, (193, 186, 170))        
         text_rect = write_text.get_rect(center=(width/2, 60))
         screen.blit(write_text, text_rect)
-        write_text = fontMenuText.render("Highscore: {}".format(scoreValue), True, (255, 255, 255))        
+        write_text = fontMenuText.render("Your Score: {}".format(scoreValue), True, (193, 186, 170))        
         text_rect = write_text.get_rect(center=(width/2, 100))
         screen.blit(write_text, text_rect)
     elif gameWon:
-        write_text = fontMenuText.render("You won!", True, (255, 255, 255))
-        screen.blit(write_text, (415, 15))
-        write_text = fontMenuText.render("Your highscore was: {}".format(scoreValue), True, (255, 255, 255))
-        screen.blit(write_text, (330, 55))
+        write_text = fontMenuText.render("You won!", True, (193, 186, 170))
+        text_rect = write_text.get_rect(center=(width/2, 60))
+        screen.blit(write_text, text_rect)
+        write_text = fontMenuText.render("Your Score: {}".format(scoreValue), True, (193, 186, 170))
+        text_rect = write_text.get_rect(center=(width/2, 100))
+        screen.blit(write_text, text_rect)
    
  
 def redrawGameWindow(surface, background, item, scoreValue, lifeValue, 
@@ -191,20 +194,22 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue,
     menuButton.draw(surface)
     
     #border rectangle background question
-    rect = pygame.Rect(0, 0, 406, 406)
-    rect.center = (width/2, 270)
-    pygame.draw.rect(screen, (136, 115, 50), rect)
+    #rect = pygame.Rect(0, 0, 406, 406)
+    #rect.center = (width/2, 270)
+    #pygame.draw.rect(screen, (136, 115, 50), rect)  
+    pygame.draw.rect(screen, (136, 115, 50), (252, 67, 456, 366))
     
     #rectangle background question
-    rect = pygame.Rect(0, 0, 400, 400)
-    rect.center = (width/2, 270)
-    pygame.draw.rect(screen, (13, 23, 24), rect)
+    #rect = pygame.Rect(0, 0, 400, 400)
+    #rect.center = (width/2, 270)
+    #pygame.draw.rect(screen, (13, 23, 24), rect)    
+    pygame.draw.rect(screen, (13, 23, 24), (255, 70, 450, 360))
     
     #rectangle border score background
-    pygame.draw.rect(screen, (136, 115, 50), (587, 0, width - 587, 58))
+    pygame.draw.rect(screen, (136, 115, 50), (547, 0, width - 547, 58))
     
     #rectangle score background
-    pygame.draw.rect(screen, (13, 23, 24), (590, 0, width - 590, 55))
+    pygame.draw.rect(screen, (13, 23, 24), (550, 0, width - 550, 55))
     
     #draw the item, lifes, score and countdown
     item.draw(surface)
@@ -259,20 +264,20 @@ def menu(scoreValue, gameOver, gameWon, moneyBagImage):
     
 
 def displayScore(scoreValue):
-    write_text = fontMenuText.render("Score: {}".format(scoreValue), True, (255, 255, 255))
-    screen.blit(write_text, (770, 2))
+    write_text = fontMenuText.render("Score: {}".format(scoreValue), True, (193, 186, 170))
+    screen.blit(write_text, (720, 2))
 
 
 def displayLifes(lifeValue, heartImage, heartDepletedImage):
     for i in range(lifeValue):       
-        screen.blit(heartImage, (610 + i*50, 8))
+        screen.blit(heartImage, (560 + i*50, 8))
     for i in range(3 - lifeValue):        
-        screen.blit(heartDepletedImage, (710 - i*50, 8))
+        screen.blit(heartDepletedImage, (660 - i*50, 8))
     
     
 def displayCountdown(countdown):
     global width, height
-    write_text = fontMenuText.render(str(countdown), True, (255, 255, 255))
+    write_text = fontMenuText.render(str(countdown), True, (193, 186, 170))
     screen.blit(write_text, (925, 2))
 
 
@@ -303,6 +308,28 @@ def loadItems():
     tearImage = pygame.image.load("resources/Tear_of_the_Goddess.png").convert_alpha()
     control_wardImage = pygame.image.load("resources/Control_Ward.png").convert_alpha()
     corruptingImage = pygame.image.load("resources/Corrupting_Potion.png").convert_alpha()
+    elixirOfIronImage = pygame.image.load("resources/Elixir_of_Iron.png").convert_alpha()
+    elixirOfSorceryImage = pygame.image.load("resources/Elixir_of_Sorcery.png").convert_alpha()
+    elixirOfWrathImage = pygame.image.load("resources/Elixir_of_Wrath.png").convert_alpha()
+    healthPotionImage = pygame.image.load("resources/Health_Potion.png").convert_alpha()
+    refillablePotionImage = pygame.image.load("resources/Refillable_Potion.png").convert_alpha()
+    berserkersImage = pygame.image.load("resources/Berserker's_Greaves.png").convert_alpha()
+    bootsImage = pygame.image.load("resources/Boots.png").convert_alpha()
+    bootsOfSwiftnessImage = pygame.image.load("resources/Boots_of_Swiftness.png").convert_alpha()
+    ionianBootsImage = pygame.image.load("resources/Ionian_Boots_of_Lucidity.png").convert_alpha()
+    mercurysImage = pygame.image.load("resources/Mercury's_Treads.png").convert_alpha()
+    mobilityBootsImage = pygame.image.load("resources/Mobility_Boots.png").convert_alpha()
+    platedSteelcapsImage = pygame.image.load("resources/Plated_Steelcaps.png").convert_alpha()
+    sorcerersShoesImage = pygame.image.load("resources/Sorcerer's_Shoes.png").convert_alpha()
+    amplifyingTomeImage = pygame.image.load("resources/Amplifying_Tome.png").convert_alpha()
+    bfSwordImage = pygame.image.load("resources/B_F_Sword.png").convert_alpha()
+    blastingWandImage = pygame.image.load("resources/Blasting_Wand.png").convert_alpha()
+    cloakOfAgilityImage = pygame.image.load("resources/Cloak_of_Agility.png").convert_alpha()
+    clothArmorImage = pygame.image.load("resources/Cloth_Armor.png").convert_alpha()
+    daggerImage = pygame.image.load("resources/Dagger.png").convert_alpha()
+    faerieCharmImage = pygame.image.load("resources/Faerie_Charm.png").convert_alpha()
+    longSwordImage = pygame.image.load("resources/Long_Sword.png").convert_alpha()
+    largeRodImage = pygame.image.load("resources/Needlessly_Large_Rod.png").convert_alpha()
     
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
@@ -328,18 +355,47 @@ def loadItems():
     tear_of_the_goddess = Question("Tear of the Goddess", tearImage, [400, 450, 350, 300])
     control_ward = Question("Control Ward", control_wardImage, [75, 50, 25, 100])
     corrupting_potion = Question("Corrupting Potion", corruptingImage, [500, 250, 450, 400])
-
+    elixir_of_iron = Question("Elixir of Iron", elixirOfIronImage, [500, 1000, 700, 400])
+    elixir_of_sorcery = Question("Elixir of Sorcery", elixirOfSorceryImage, [500, 1000, 800, 600])
+    elixir_of_wrath = Question("Elixir of Wrath", elixirOfWrathImage, [500, 800, 400, 550])
+    health_potion = Question("Health Potion", healthPotionImage, [50, 100, 75, 40])
+    refillable_potion = Question("Refillable Potion", refillablePotionImage, [150, 50, 500, 250])
+    berserkers_greaves = Question("Berserker's Greaves", berserkersImage, [1100, 750, 900, 1000])
+    boots = Question("Boots", bootsImage, [300, 500, 550, 700])
+    boots_of_swiftness = Question("Boots of Swiftness", bootsOfSwiftnessImage, [900, 1000, 1100, 850])
+    ionian_boots_of_lucidity = Question("Ionian Boots of Lucidity", ionianBootsImage, [950, 900, 1000, 1100])
+    mercurys_treads = Question("Mercury's Treads", mercurysImage, [1100, 950, 1000, 900])
+    mobility_boots = Question("Mobility Boots", mobilityBootsImage, [1000, 950, 1000, 900])
+    plated_steelcaps = Question("Plated Steelcaps", platedSteelcapsImage, [1100, 1000, 950, 900])
+    sorcerers_shoes = Question("Sorcerer's Shoes", sorcerersShoesImage, [1100, 1000, 950, 900])
+    amplifying_tome = Question("Amplifying Tome", amplifyingTomeImage, [435, 375, 500, 465])
+    b_f_sword = Question("B. F. Sword", bfSwordImage, [1300, 1000, 875, 1500])
+    blasting_wand = Question("Blasting Wand", blastingWandImage, [850, 950, 1075, 1200])
+    cloak_of_agility = Question("Cloak of Agility", cloakOfAgilityImage, [600, 750, 550, 875])
+    cloth_armor = Question("Cloth Armor", clothArmorImage, [300, 400, 275, 500])
+    dagger = Question("Dagger", daggerImage, [300, 310, 400, 385])
+    faerie_charm = Question("Faerie Charm", faerieCharmImage, [250, 275, 300, 225])
+    long_sword = Question("Long Sword", longSwordImage, [350, 400, 500, 450])
+    needlessly_large_rod = Question("Needlessly Large Rod", largeRodImage, [1250, 1500, 1100, 1275])
    
     #Shorter list for playtesting
-    #itemList = [liandrys_anguish, morellonomicon]
+    #itemList = [elixir_of_iron]
       
     #Full list
+    
     itemList = [liandrys_anguish, morellonomicon, crown_of_the_shattered_queen,
                 divine_sunderer, duskblade_of_draktharr, eclipse, evenshroud,
                 everfrost, frostfire_gauntlet, galeforce, cull, dark_seal, 
                 dorans_blade, dorans_ring, dorans_shield, emberknife, hailblade,
                 relic, spectral, spellthiefs, steel_shoulderguards, 
-                tear_of_the_goddess, control_ward, corrupting_potion]
+                tear_of_the_goddess, control_ward, corrupting_potion,
+                elixir_of_iron, elixir_of_sorcery, elixir_of_wrath,
+                health_potion, refillable_potion, berserkers_greaves, boots,
+                boots_of_swiftness, ionian_boots_of_lucidity, mercurys_treads,
+                mobility_boots, plated_steelcaps, sorcerers_shoes,
+                amplifying_tome, b_f_sword, blasting_wand, cloak_of_agility,
+                cloth_armor, dagger, faerie_charm, long_sword,
+                needlessly_large_rod]
     
     return itemList  
 
@@ -351,19 +407,19 @@ def hovering(mousePos, menuButton, questionButtons):
         menuButton.onHover(True)
     else:
         menuButton.onHover(False)
-    if 330 <= mousePos[0] <= 430 and 250 <= mousePos[1] <= 300:
+    if 370 <= mousePos[0] <= 470 and 280 <= mousePos[1] <= 330:
         questionButtons[0].onHover(True)
     else:
         questionButtons[0].onHover(False)
-    if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
+    if 490 <= mousePos[0] <= 590 and 280 <= mousePos[1] <= 330:
         questionButtons[1].onHover(True)
     else:
         questionButtons[1].onHover(False)
-    if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
+    if 370 <= mousePos[0] <= 470 and 350 <= mousePos[1] <= 400:
         questionButtons[2].onHover(True)
     else:
         questionButtons[2].onHover(False)
-    if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
+    if 490 <= mousePos[0] <= 590 and 350 <= mousePos[1] <= 400:
         questionButtons[3].onHover(True)
     else:
         questionButtons[3].onHover(False)
@@ -409,7 +465,7 @@ def main():
     #quitButton
     quitButton = Button(buttonX, 280, 'Quit', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87), 50, buttonWidth)
     
-    menuButton = Button(0, 0, 'Menu')
+    menuButton = Button(0, 0, 'Menu', (33, 60, 57), (136, 115, 50), (71, 170, 159), (127, 118, 87))
     
     #loading items and setting default values
     itemList = loadItems()
@@ -438,7 +494,10 @@ def main():
                 gameOver = False
                 gameWon = False
                 countdown = 5
-                #pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
+                
+                #timer can be disabled for testing purposes
+                pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
+                
                 itemList = loadItems()
                 newItem = True
             
@@ -469,7 +528,7 @@ def main():
                         if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
                             menuOpen = True
                             scoreValue += 10
-                        if 330 <= mousePos[0] <= 430 and 250 <= mousePos[1] <= 300:
+                        if 370 <= mousePos[0] <= 470 and 280 <= mousePos[1] <= 330:
                             if randomItem.answer1clicked():
                                 newItem = True
                                 scoreValue += 10
@@ -481,7 +540,7 @@ def main():
                                 lifeValue -= 1
                                 questionButtons[0].onWrongAnswer()
                                 
-                        if 530 <= mousePos[0] <= 630 and 250 <= mousePos[1] <= 300:
+                        if 490 <= mousePos[0] <= 590 and 280 <= mousePos[1] <= 330:
                             if randomItem.answer2clicked():
                                 newItem = True
                                 scoreValue += 10
@@ -493,7 +552,7 @@ def main():
                                 lifeValue -= 1
                                 questionButtons[1].onWrongAnswer()
                                 
-                        if 330 <= mousePos[0] <= 430 and 350 <= mousePos[1] <= 400:
+                        if 370 <= mousePos[0] <= 470 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer3clicked():
                                 newItem = True
                                 scoreValue += 10
@@ -505,7 +564,7 @@ def main():
                                 lifeValue -= 1
                                 questionButtons[2].onWrongAnswer()
                                 
-                        if 530 <= mousePos[0] <= 630 and 350 <= mousePos[1] <= 400:
+                        if 490 <= mousePos[0] <= 590 and 350 <= mousePos[1] <= 400:
                             if randomItem.answer4clicked():
                                 newItem = True
                                 scoreValue += 10
