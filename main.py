@@ -330,6 +330,27 @@ def loadItems():
     faerieCharmImage = pygame.image.load("resources/Faerie_Charm.png").convert_alpha()
     longSwordImage = pygame.image.load("resources/Long_Sword.png").convert_alpha()
     largeRodImage = pygame.image.load("resources/Needlessly_Large_Rod.png").convert_alpha()
+    nullMagicMantleImage = pygame.image.load("resources/Null-Magic_Mantle.png").convert_alpha()
+    pickaxeImage = pygame.image.load("resources/Pickaxe.png").convert_alpha()
+    rejuvenationImage = pygame.image.load("resources/Rejuvenation_Bead.png").convert_alpha()
+    rubyImage = pygame.image.load("resources/Ruby_Crystal.png").convert_alpha()
+    sapphireImage = pygame.image.load("resources/Sapphire_Crystal.png").convert_alpha()
+    sheenImage = pygame.image.load("resources/Sheen.png").convert_alpha()
+    stopwatchImage = pygame.image.load("resources/Stopwatch.png").convert_alpha()
+    aegisImage = pygame.image.load("resources/Aegis_of_the_Legion.png").convert_alpha()
+    aetherImage = pygame.image.load("resources/Aether_Wisp.png").convert_alpha()
+    bamisImage = pygame.image.load("resources/Bami's_Cinder.png").convert_alpha()
+    bandleglassImage = pygame.image.load("resources/Bandleglass_Mirror.png").convert_alpha()
+    blightingImage = pygame.image.load("resources/Blighting_Jewel.png").convert_alpha()
+    brambleImage = pygame.image.load("resources/Bramble_Vest.png").convert_alpha()
+    warhammerImage = pygame.image.load("resources/Caulfield's_Warhammer.png").convert_alpha()
+    chainWestImage = pygame.image.load("resources/Chain_Vest.png").convert_alpha()
+    crystallineImage = pygame.image.load("resources/Crystalline_Bracer.png").convert_alpha()
+    executionersImage = pygame.image.load("resources/Executioner's_Calling.png").convert_alpha()
+    fiendishImage = pygame.image.load("resources/Fiendish_Codex.png").convert_alpha()
+    forbiddenIdolImage = pygame.image.load("resources/Forbidden_Idol.png").convert_alpha()
+    giantsImage = pygame.image.load("resources/Giant's_Belt.png").convert_alpha()
+
     
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
@@ -377,6 +398,27 @@ def loadItems():
     faerie_charm = Question("Faerie Charm", faerieCharmImage, [250, 275, 300, 225])
     long_sword = Question("Long Sword", longSwordImage, [350, 400, 500, 450])
     needlessly_large_rod = Question("Needlessly Large Rod", largeRodImage, [1250, 1500, 1100, 1275])
+    null_magic_mantle = Question("Null-Magic Mantle", nullMagicMantleImage, [450, 350, 475, 500])
+    pickaxe = Question("Pickaxe", pickaxeImage, [875, 900, 950, 1050])
+    rejuvenation_bead = Question("Rejuvenation Bead", rejuvenationImage, [150, 75, 100, 275])
+    ruby_crystal = Question("Ruby Crystal", rubyImage, [400, 500, 600, 700])
+    sapphire_crystal = Question("Sapphire Crystal", sapphireImage, [350, 300, 375, 210])
+    sheen = Question("Sheen", sheenImage, [700, 1000, 1200, 1050])
+    stopwatch = Question("Stopwatch", stopwatchImage, [650, 500, 450, 700])
+    aegis_of_the_legion = Question("Aegis of the Legion", aegisImage, [1400, 1250, 1600, 1375])
+    aether_wisp = Question("Aether Wisp", aetherImage, [850, 800, 750, 550])
+    bamis_cinder = Question("Bami's Cinder", bamisImage, [1100, 1050, 1250, 1500])
+    bandleglass_mirror = Question("Bandleglass Mirror", bandleglassImage, [950, 750, 500, 1100])
+    blighting_jewel = Question("Blighting Jewel", blightingImage, [1250, 1100, 1500, 1750])
+    bramble_vest = Question("Bramble Vest", brambleImage, [800, 750, 600, 900])
+    caulfields_warhammer = Question("Caulfield's Warhammer", warhammerImage, [1100, 1250, 1050, 1300])
+    chain_vest = Question("Chain Vest", chainWestImage, [800, 775, 950, 1000])
+    crystalline_bracer = Question("Crystalline Bracer", crystallineImage, [650, 400, 500, 550])
+    exectuioners_calling = Question("Executioner's Calling", executionersImage, [800, 750, 900, 1050])
+    fiendish_codex = Question("Fiendish Codex", fiendishImage, [900, 750, 1000, 675])
+    forbidden_idol = Question("Forbidden Idol", forbiddenIdolImage, [800, 750, 900, 1000])
+    giants_belt = Question("Giant's Belt", giantsImage, [900, 800, 1100, 1300])
+
    
     #Shorter list for playtesting
     #itemList = [elixir_of_iron]
@@ -395,7 +437,11 @@ def loadItems():
                 mobility_boots, plated_steelcaps, sorcerers_shoes,
                 amplifying_tome, b_f_sword, blasting_wand, cloak_of_agility,
                 cloth_armor, dagger, faerie_charm, long_sword,
-                needlessly_large_rod]
+                needlessly_large_rod, null_magic_mantle, pickaxe, rejuvenation_bead,
+                ruby_crystal, sapphire_crystal, sheen, stopwatch, aegis_of_the_legion,
+                aether_wisp, bamis_cinder, bandleglass_mirror, blighting_jewel,
+                bramble_vest, caulfields_warhammer, chain_vest, crystalline_bracer,
+                exectuioners_calling, fiendish_codex, forbidden_idol, giants_belt]
     
     return itemList  
 
