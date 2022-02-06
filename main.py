@@ -7,6 +7,7 @@ Created on Fri Jan 14 12:40:36 2022
 
 import pygame
 import random
+import database
 
 pygame.init()
 
@@ -21,7 +22,6 @@ pygame.display.set_caption('League of Legends Quiz')
 window_icon = pygame.image.load('resources/Aurelion_Sol_Thumbnail.png')
 
 pygame.display.set_icon(window_icon)
-
 
 class Button():
     def __init__(self, x_pos, y_pos, text, color = None, borderColor = None, 
@@ -148,6 +148,7 @@ class Question():
 
 
 def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
+
     global width, height, screen
     surface.fill((0, 0, 0))
     screen.blit(menuBackground, (0, 0))
@@ -162,12 +163,12 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
     rect2.center = (width/2, height/2)
     pygame.draw.rect(screen, (13, 23, 24), rect2)
     
+    #menu buttons
     playButton.draw(surface)
+    screen.blit(moneyBagImage, (595, 153))
     playButton2.draw(surface)
     quitButton.draw(surface)
-    
-    screen.blit(moneyBagImage, (595, 153))
-    
+      
     #drawing message when game is over or won
     if gameOver:
         write_text = fontMenuText.render("Game over!", True, (193, 186, 170))        
@@ -183,7 +184,11 @@ def redrawMenuWindow(surface, gameOver, scoreValue, gameWon, moneyBagImage):
         write_text = fontMenuText.render("Your Score: {}".format(scoreValue), True, (193, 186, 170))
         text_rect = write_text.get_rect(center=(width/2, 100))
         screen.blit(write_text, text_rect)
-   
+
+    #display highscore
+    write_text = fontMenuText.render("Your Highscore: {}".format(database.getHighscore()), True, (193, 186, 170))
+    text_rect = write_text.get_rect(center=(width/2, 400))
+    screen.blit(write_text, text_rect)
  
 def redrawGameWindow(surface, background, item, scoreValue, lifeValue, 
                      countdown, heartImage, heartDepletedImage, hourglassImage):
@@ -220,7 +225,9 @@ def redrawGameWindow(surface, background, item, scoreValue, lifeValue,
 
    
 def menu(scoreValue, gameOver, gameWon, moneyBagImage):
+
     global screen, running, playButton, quitButton
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -350,7 +357,17 @@ def loadItems():
     fiendishImage = pygame.image.load("resources/Fiendish_Codex.png").convert_alpha()
     forbiddenIdolImage = pygame.image.load("resources/Forbidden_Idol.png").convert_alpha()
     giantsImage = pygame.image.load("resources/Giant's_Belt.png").convert_alpha()
-
+    glacialImage = pygame.image.load("resources/Glacial_Buckler.png").convert_alpha()
+    hearthboundImage = pygame.image.load("resources/Hearthbound_Axe.png").convert_alpha()
+    hexdrinkerImage = pygame.image.load("resources/Hexdrinker.png").convert_alpha()
+    hextechAlternatorImage = pygame.image.load("resources/Hextech_Alternator.png").convert_alpha()
+    ironspikeImage = pygame.image.load("resources/Ironspike_Whip.png").convert_alpha()
+    kindlegemImage = pygame.image.load("resources/Kindlegem.png").convert_alpha()
+    kircheisImage = pygame.image.load("resources/Kircheis_Shard.png").convert_alpha()
+    lastWhisperImage = pygame.image.load("resources/Last_Whisper.png").convert_alpha()
+    leechingImage = pygame.image.load("resources/Leeching_Leer.png").convert_alpha()
+    lostChapterImage = pygame.image.load("resources/Lost_Chapter.png").convert_alpha()
+    
     
     liandrys_anguish = Question("Liandry's Anguish", liandrysImage, [3200, 3100, 3400, 3050])
     morellonomicon = Question("Morellonomicon", morellonomiconImage, [2500, 2600, 2700, 2550])
@@ -418,6 +435,16 @@ def loadItems():
     fiendish_codex = Question("Fiendish Codex", fiendishImage, [900, 750, 1000, 675])
     forbidden_idol = Question("Forbidden Idol", forbiddenIdolImage, [800, 750, 900, 1000])
     giants_belt = Question("Giant's Belt", giantsImage, [900, 800, 1100, 1300])
+    glacial_buckler = Question("Glacial Buckler", glacialImage, [900, 850, 1200, 1300])
+    hearthbound_axe = Question("Hearthbound Axe", hearthboundImage, [1000, 800, 1100, 900])
+    hexdrinker = Question("Hexdrinker", hexdrinkerImage, [1300, 1500, 1450, 1675])
+    hextech_alternator = Question("Hextech Alternator", hextechAlternatorImage, [1050, 950, 1200, 1250])
+    ironspike_whip = Question("Ironspike Whip", ironspikeImage, [1100, 1300, 1500, 800])
+    kindlegem = Question("Kindlegem", kindlegemImage, [800, 600, 950, 1000])
+    kircheis_shard = Question("Kircheis Shard", kircheisImage, [700, 650, 600, 900])
+    last_whisper = Question("Last Whisper", lastWhisperImage, [1450, 1250, 1500, 1600])
+    leeching_leer = Question("Leeching Leer", leechingImage, [1300, 1250, 1100, 1000])
+    lost_chapter = Question("Lost Chapter", lostChapterImage, [1300, 1350, 1400, 1250])
 
    
     #Shorter list for playtesting
@@ -441,7 +468,10 @@ def loadItems():
                 ruby_crystal, sapphire_crystal, sheen, stopwatch, aegis_of_the_legion,
                 aether_wisp, bamis_cinder, bandleglass_mirror, blighting_jewel,
                 bramble_vest, caulfields_warhammer, chain_vest, crystalline_bracer,
-                exectuioners_calling, fiendish_codex, forbidden_idol, giants_belt]
+                exectuioners_calling, fiendish_codex, forbidden_idol, giants_belt,
+                glacial_buckler, hearthbound_axe, hexdrinker, hextech_alternator,
+                ironspike_whip, kindlegem, kircheis_shard, last_whisper, leeching_leer,
+                lost_chapter]
     
     return itemList  
 
@@ -531,16 +561,18 @@ def main():
         FPS_CLOCK.tick(30)
         
         if menuOpen or lifeValue < 0 or gameWon or countdown <= 0:
+            
             if lifeValue < 0 or countdown <= 0:
                 gameOver = True
+                database.newScore(scoreValue)
             menuOpen = menu(scoreValue, gameOver, gameWon, moneyBagImage)
             if not menuOpen:
                 scoreValue = 0
-                lifeValue = 3
                 gameOver = False
-                gameWon = False
+                gameWon = False               
+                lifeValue = 3
                 countdown = 5
-                
+
                 #timer can be disabled for testing purposes
                 pygame.time.set_timer(pygame.USEREVENT, 1000, loops = 5) 
                 
@@ -573,7 +605,6 @@ def main():
                     if mouseButtonType[0]:
                         if 0 <= mousePos[0] <= 100 and 0 <= mousePos[1] <= 50:
                             menuOpen = True
-                            scoreValue += 10
                         if 370 <= mousePos[0] <= 470 and 280 <= mousePos[1] <= 330:
                             if randomItem.answer1clicked():
                                 newItem = True

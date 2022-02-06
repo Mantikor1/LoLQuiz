@@ -360,145 +360,17 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
-  ('packaging.markers',
+  ('packaging',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\markers.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\__init__.py',
    'PYMODULE'),
-  ('pyparsing',
+  ('packaging.specifiers',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\__init__.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\specifiers.py',
    'PYMODULE'),
-  ('pyparsing.common',
+  ('packaging.version',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\common.py',
-   'PYMODULE'),
-  ('pyparsing.testing',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\testing.py',
-   'PYMODULE'),
-  ('pyparsing.unicode',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\unicode.py',
-   'PYMODULE'),
-  ('pyparsing.helpers',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\helpers.py',
-   'PYMODULE'),
-  ('html.entities',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\html\\entities.py',
-   'PYMODULE'),
-  ('html',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\html\\__init__.py',
-   'PYMODULE'),
-  ('pyparsing.results',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\results.py',
-   'PYMODULE'),
-  ('pyparsing.core',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\core.py',
-   'PYMODULE'),
-  ('pyparsing.diagram',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\diagram\\__init__.py',
-   'PYMODULE'),
-  ('pdb',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pdb.py',
-   'PYMODULE'),
-  ('pydoc',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc.py',
-   'PYMODULE'),
-  ('webbrowser',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\webbrowser.py',
-   'PYMODULE'),
-  ('http.server',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\server.py',
-   'PYMODULE'),
-  ('http',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\__init__.py',
-   'PYMODULE'),
-  ('socketserver',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socketserver.py',
-   'PYMODULE'),
-  ('mimetypes',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\mimetypes.py',
-   'PYMODULE'),
-  ('http.client',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\client.py',
-   'PYMODULE'),
-  ('ssl',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ssl.py',
-   'PYMODULE'),
-  ('pydoc_data.topics',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc_data\\topics.py',
-   'PYMODULE'),
-  ('pydoc_data',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc_data\\__init__.py',
-   'PYMODULE'),
-  ('tty',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tty.py',
-   'PYMODULE'),
-  ('runpy',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\runpy.py',
-   'PYMODULE'),
-  ('shlex',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\shlex.py',
-   'PYMODULE'),
-  ('glob',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\glob.py',
-   'PYMODULE'),
-  ('code',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\code.py',
-   'PYMODULE'),
-  ('codeop',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\codeop.py',
-   'PYMODULE'),
-  ('__future__',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\__future__.py',
-   'PYMODULE'),
-  ('bdb',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\bdb.py',
-   'PYMODULE'),
-  ('cmd',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\cmd.py',
-   'PYMODULE'),
-  ('pyparsing.actions',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\actions.py',
-   'PYMODULE'),
-  ('pyparsing.exceptions',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\exceptions.py',
-   'PYMODULE'),
-  ('pyparsing.util',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\util.py',
-   'PYMODULE'),
-  ('packaging._musllinux',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\_musllinux.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\version.py',
    'PYMODULE'),
   ('packaging._manylinux',
    'C:\\Users\\Jonas '
@@ -511,14 +383,6 @@
   ('ctypes._endian',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ctypes\\_endian.py',
-   'PYMODULE'),
-  ('packaging.__about__',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\__about__.py',
-   'PYMODULE'),
-  ('packaging.version',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\version.py',
    'PYMODULE'),
   ('packaging.tags',
    'C:\\Users\\Jonas '
@@ -567,6 +431,10 @@
   ('asyncio.selector_events',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\asyncio\\selector_events.py',
+   'PYMODULE'),
+  ('ssl',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ssl.py',
    'PYMODULE'),
   ('asyncio.proactor_events',
    'C:\\Users\\Jonas '
@@ -643,6 +511,10 @@
   ('multiprocessing.spawn',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\multiprocessing\\spawn.py',
+   'PYMODULE'),
+  ('runpy',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\runpy.py',
    'PYMODULE'),
   ('multiprocessing.util',
    'C:\\Users\\Jonas '
@@ -776,9 +648,21 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\netrc.py',
    'PYMODULE'),
+  ('shlex',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\shlex.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\mimetypes.py',
+   'PYMODULE'),
   ('http.cookiejar',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('http',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\__init__.py',
    'PYMODULE'),
   ('urllib.response',
    'C:\\Users\\Jonas '
@@ -803,6 +687,10 @@
   ('xml.sax.xmlreader',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('http.client',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\client.py',
    'PYMODULE'),
   ('decimal',
    'C:\\Users\\Jonas '
@@ -924,41 +812,149 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\util.py',
    'PYMODULE'),
+  ('pdb',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pdb.py',
+   'PYMODULE'),
+  ('pydoc',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\webbrowser.py',
+   'PYMODULE'),
+  ('http.server',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('socketserver',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\socketserver.py',
+   'PYMODULE'),
+  ('html',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\html\\__init__.py',
+   'PYMODULE'),
+  ('html.entities',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\html\\entities.py',
+   'PYMODULE'),
+  ('pydoc_data.topics',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc_data\\topics.py',
+   'PYMODULE'),
+  ('pydoc_data',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pydoc_data\\__init__.py',
+   'PYMODULE'),
+  ('tty',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tty.py',
+   'PYMODULE'),
+  ('glob',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\glob.py',
+   'PYMODULE'),
+  ('code',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\code.py',
+   'PYMODULE'),
+  ('codeop',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\codeop.py',
+   'PYMODULE'),
+  ('bdb',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\bdb.py',
+   'PYMODULE'),
+  ('cmd',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\cmd.py',
+   'PYMODULE'),
   ('difflib',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\difflib.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\__future__.py',
    'PYMODULE'),
   ('_compat_pickle',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_compat_pickle.py',
    'PYMODULE'),
-  ('packaging._structures',
+  ('packaging.requirements',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\_structures.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\requirements.py',
    'PYMODULE'),
-  ('packaging.specifiers',
+  ('pyparsing',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\specifiers.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\__init__.py',
+   'PYMODULE'),
+  ('pyparsing.common',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\common.py',
+   'PYMODULE'),
+  ('pyparsing.testing',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\testing.py',
+   'PYMODULE'),
+  ('pyparsing.unicode',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\unicode.py',
+   'PYMODULE'),
+  ('pyparsing.helpers',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\helpers.py',
+   'PYMODULE'),
+  ('pyparsing.results',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\results.py',
+   'PYMODULE'),
+  ('pyparsing.core',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\core.py',
+   'PYMODULE'),
+  ('pyparsing.diagram',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\diagram\\__init__.py',
+   'PYMODULE'),
+  ('pyparsing.actions',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\actions.py',
+   'PYMODULE'),
+  ('pyparsing.exceptions',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\exceptions.py',
+   'PYMODULE'),
+  ('pyparsing.util',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pyparsing\\util.py',
+   'PYMODULE'),
+  ('packaging.__about__',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('packaging._musllinux',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\_musllinux.py',
    'PYMODULE'),
   ('packaging.utils',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\utils.py',
    'PYMODULE'),
-  ('packaging.requirements',
+  ('packaging.markers',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\requirements.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\markers.py',
    'PYMODULE'),
-  ('packaging',
+  ('packaging._structures',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\__init__.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\packaging\\_structures.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
+  ('pkg_resources._vendor.packaging.utils',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.version',
    'C:\\Users\\Jonas '
@@ -968,41 +964,29 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_typing.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.utils',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
   ('pkg_resources._vendor.packaging.specifiers',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\pyparsing.py',
-   'PYMODULE'),
-  ('uuid',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uuid.py',
-   'PYMODULE'),
   ('pkg_resources._vendor.packaging._compat',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.__about__',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.appdirs',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.tags',
    'C:\\Users\\Jonas '
@@ -1064,9 +1048,25 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\distutils\\fancy_getopt.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
+  ('pkg_resources._vendor.packaging.requirements',
    'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.pyparsing',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pkg_resources\\_vendor\\pyparsing.py',
+   'PYMODULE'),
+  ('uuid',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uuid.py',
    'PYMODULE'),
   ('pkg_resources.extern',
    'C:\\Users\\Jonas '
@@ -1092,17 +1092,32 @@
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\zipimport.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'C:\\Users\\Jonas '
-   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
    'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
+   'PYMODULE'),
   ('stringprep',
    'C:\\Users\\Jonas '
    'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('database',
+   'C:\\Users\\Jonas Töns\\Documents\\Hobbys\\Pygame\\LoLQuizz\\database.py',
+   'PYMODULE'),
+  ('sqlite3',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\sqlite3\\dump.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Users\\Jonas '
+   'Töns\\AppData\\Local\\Programs\\Python\\Python310\\lib\\sqlite3\\dbapi2.py',
    'PYMODULE'),
   ('random',
    'C:\\Users\\Jonas '
